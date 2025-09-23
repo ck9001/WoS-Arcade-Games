@@ -40,47 +40,45 @@ table.remove(d.Pool,f)e.Top:Destroy()e.Bottom:Destroy()end function d.
 DestroyPool()for e,f in d.Pool do f:Destroy()end end return d end function a.d()
 local b=function(b,c)b.ImageRectOffset=Vector2.new(16*math.clamp(c or 0,0,9),0)
 end local c={}c.__index=c function c.new(d)local e=setmetatable({Frame=Instance.
-new'Frame',Digits={},Parent=nil,Size=UDim2.fromScale(0.5,0.5),Position=UDim2.
-fromScale(0.5,0.5),AnchorPoint=Vector2.new(0,0),Value=0},c)local f=e.Frame f.
-BackgroundTransparency=1 local g=Instance.new'UIListLayout'g.FillDirection=Enum.
-FillDirection.Horizontal g.SortOrder=Enum.SortOrder.LayoutOrder g.
-HorizontalAlignment=Enum.HorizontalAlignment.Left g.Padding=UDim.new(0.05,0)g.
-VerticalAlignment=Enum.VerticalAlignment.Center g.HorizontalFlex=Enum.
-UIFlexAlignment.Fill g.Parent=f for h=1,d or 3 do local i=Instance.new
-'ImageLabel'i.Image='rbxassetid://99344985316108'i.ImageRectSize=Vector2.new(16,
-16)i.ResampleMode=Enum.ResamplerMode.Pixelated i.LayoutOrder=h i.ScaleType=Enum.
-ScaleType.Fit i.Size=UDim2.fromScale(0.3333333333333333,1)i.
-BackgroundTransparency=1 i.Parent=f table.insert(e.Digits,i)end return e end
-function c.SetValue(d,e)local f=tostring(e):split''while#f<#d.Digits do table.
-insert(f,1,'0')end for g,h in d.Digits do local i=tonumber(f[h.LayoutOrder]or 0)
-b(h,i)end end function c.Destroy(d)d.Frame:Destroy()end return c end function a.
-e()local b=a.load'd'local c={}c.__index=c function c.new(d)local e=setmetatable(
-{Canvas=d,Menu={Container=Instance.new'Frame',Background=Instance.new
-'ImageLabel',Logo=Instance.new'ImageLabel',PlayButton=Instance.new'ImageLabel',
-ScoreLabel=b.new(3)}},c)local f=e.Menu local g=f.Container g.Size=UDim2.
-fromScale(1,1)g.BackgroundTransparency=1 g.Visible=false g.Parent=d local h=f.
-Logo h.AnchorPoint=Vector2.new(0.5,0)h.ResampleMode=Enum.ResamplerMode.Pixelated
-h.BackgroundTransparency=1 h.Image='rbxassetid://135353986238221'h.Size=UDim2.
-fromScale(0.66,0.178)h.Position=UDim2.fromScale(0.5,0.264)h.ZIndex=1 h.Parent=g
-local i=f.PlayButton i.AnchorPoint=Vector2.new(0.5,0)i.ResampleMode=Enum.
-ResamplerMode.Pixelated i.BackgroundTransparency=1 i.Image=
-'rbxassetid://92637228175954'i.Size=UDim2.fromScale(0.449,0.251)i.Position=UDim2
-.fromScale(0.5,0.473)i.ZIndex=1 i.Parent=g local j=f.Background j.ResampleMode=
-Enum.ResamplerMode.Pixelated j.Image='rbxassetid://79739641355792'j.Size=UDim2.
-fromScale(1,1)j.ZIndex=0 j.Parent=d local k=f.ScoreLabel local l=k.Frame l.
-AnchorPoint=Vector2.new(0.5,0)l.Size=UDim2.fromScale(0.3,0.1)l.Position=UDim2.
-fromScale(0.5,0)l.ZIndex=2 l.Parent=j e:SetScore(0)return e end function c.
-SetScore(d,e)d.Menu.ScoreLabel:SetValue(e)end function c.SetMenuVisibility(d,e)d
-.Menu.Container.Visible=e or false end return c end end local b=a.load'a'local c
-=a.load'b'local d=a.load'c'local e=a.load'e'local f=assert(Network:GetPart
-'Screen','no connected screen')local g=assert(Network:GetPort(1),
-'no connected port with id of 1')f:ClearElements()local h=f:GetCanvas()local i=e
-.new(h)local j=false g.Triggered:Connect(function()j=true end)while true do i:
-SetMenuVisibility(true)if j then j=false i:SetMenuVisibility(false)local k=c.
-new(i.Menu.Background)k.Sprite.Visible=true d.new(i.Menu.Background)local l=0 i:
-SetScore(l)local m=0 local n=0 local o=true while o do local p=task.wait()n+=p m
-+=p k:Update(p,j)if m>b.ObstacleSpawnRate then m=0 d.new(i.Menu.Background)end
-for q,r in d.Pool do r:Update(p,b.ScrollSpeed)if r:IsColliding(k.Sprite)then o=
-false break end if not r.Cleared then local s=r:CheckCleared(k.Sprite)if s then
-l+=1 i:SetScore(l)end end end if j then j=false end end k:Destroy()d.
-DestroyPool()end task.wait(0.1)end
+new'Frame',Digits={}},c)local f=e.Frame f.BackgroundTransparency=1 local g=
+Instance.new'UIListLayout'g.FillDirection=Enum.FillDirection.Horizontal g.
+SortOrder=Enum.SortOrder.LayoutOrder g.HorizontalAlignment=Enum.
+HorizontalAlignment.Left g.Padding=UDim.new(0.05,0)g.VerticalAlignment=Enum.
+VerticalAlignment.Center g.HorizontalFlex=Enum.UIFlexAlignment.Fill g.Parent=f
+for h=1,d or 3 do local i=Instance.new'ImageLabel'i.Image=
+'rbxassetid://99344985316108'i.ImageRectSize=Vector2.new(16,16)i.ResampleMode=
+Enum.ResamplerMode.Pixelated i.LayoutOrder=h i.ScaleType=Enum.ScaleType.Fit i.
+Size=UDim2.fromScale(0.3333333333333333,1)i.BackgroundTransparency=1 i.Parent=f
+table.insert(e.Digits,i)end return e end function c.SetValue(d,e)local f=
+tostring(e):split''while#f<#d.Digits do table.insert(f,1,'0')end for g,h in d.
+Digits do local i=tonumber(f[h.LayoutOrder]or 0)b(h,i)end end function c.Destroy
+(d)d.Frame:Destroy()end return c end function a.e()local b=a.load'd'local c={}c.
+__index=c function c.new(d)local e=setmetatable({Canvas=d,Menu={Container=
+Instance.new'Frame',Background=Instance.new'ImageLabel',Logo=Instance.new
+'ImageLabel',PlayButton=Instance.new'ImageLabel',ScoreLabel=b.new(3)}},c)local f
+=e.Menu local g=f.Container g.Size=UDim2.fromScale(1,1)g.BackgroundTransparency=
+1 g.Visible=false g.Parent=d local h=f.Logo h.AnchorPoint=Vector2.new(0.5,0)h.
+ResampleMode=Enum.ResamplerMode.Pixelated h.BackgroundTransparency=1 h.Image=
+'rbxassetid://135353986238221'h.Size=UDim2.fromScale(0.66,0.178)h.Position=UDim2
+.fromScale(0.5,0.264)h.ZIndex=1 h.Parent=g local i=f.PlayButton i.AnchorPoint=
+Vector2.new(0.5,0)i.ResampleMode=Enum.ResamplerMode.Pixelated i.
+BackgroundTransparency=1 i.Image='rbxassetid://92637228175954'i.Size=UDim2.
+fromScale(0.449,0.251)i.Position=UDim2.fromScale(0.5,0.473)i.ZIndex=1 i.Parent=g
+local j=f.Background j.ResampleMode=Enum.ResamplerMode.Pixelated j.Image=
+'rbxassetid://79739641355792'j.Size=UDim2.fromScale(1,1)j.ZIndex=0 j.Parent=d
+local k=f.ScoreLabel local l=k.Frame l.AnchorPoint=Vector2.new(0.5,0)l.Size=
+UDim2.fromScale(0.3,0.1)l.Position=UDim2.fromScale(0.5,0)l.ZIndex=2 l.Parent=j e
+:SetScore(0)return e end function c.SetScore(d,e)d.Menu.ScoreLabel:SetValue(e)
+end function c.SetMenuVisibility(d,e)d.Menu.Container.Visible=e or false end
+return c end end local b=a.load'a'local c=a.load'b'local d=a.load'c'local e=a.
+load'e'local f=assert(Network:GetPart'Screen','no connected screen')local g=
+assert(Network:GetPort(1),'no connected port with id of 1')f:ClearElements()
+local h=f:GetCanvas()local i=e.new(h)local j=false g.Triggered:Connect(function(
+)j=true end)while true do i:SetMenuVisibility(true)if j then j=false i:
+SetMenuVisibility(false)local k=c.new(i.Menu.Background)k.Sprite.Visible=true d.
+new(i.Menu.Background)local l=0 i:SetScore(l)local m=0 local n=0 local o=true
+while o do local p=task.wait()n+=p m+=p k:Update(p,j)if m>b.ObstacleSpawnRate
+then m=0 d.new(i.Menu.Background)end for q,r in d.Pool do r:Update(p,b.
+ScrollSpeed)if r:IsColliding(k.Sprite)then o=false break end if not r.Cleared
+then local s=r:CheckCleared(k.Sprite)if s then l+=1 i:SetScore(l)end end end if
+j then j=false end end k:Destroy()d.DestroyPool()end task.wait(0.1)end
