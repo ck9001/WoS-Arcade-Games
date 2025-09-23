@@ -10,7 +10,7 @@ type Gui = typeof(setmetatable({} :: {
       Background: ImageLabel,
       Logo: ImageLabel,
       PlayButton: ImageLabel,
-      ScoreLabel: any
+      ScoreLabel: NumberLabel.NumberLabel
    }
 }, Gui))
 
