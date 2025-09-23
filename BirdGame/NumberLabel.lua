@@ -5,15 +5,15 @@ end
 local NumberLabel = {}
 NumberLabel.__index = NumberLabel
 
-function NumberLabel.new(Digits: number)
+export type NumberLabel = typeof(setmetatable({} :: {
+   Frame: Frame,
+   Digits: {ImageLabel},
+}, NumberLabel))
+
+function NumberLabel.new(Digits: number): NumberLabel
     local self = setmetatable({
         Frame = Instance.new("Frame"),
-        Digits = {},
-        Parent = nil,
-        Size = UDim2.fromScale(0.5, 0.5),
-        Position = UDim2.fromScale(0.5, 0.5),
-        AnchorPoint = Vector2.new(0, 0),
-        Value = 0
+        Digits = {}
     }, NumberLabel)
 
     local Frame = self.Frame
@@ -43,7 +43,7 @@ function NumberLabel.new(Digits: number)
     return self
 end
 
-function NumberLabel:SetValue(val: number)
+function NumberLabel.SetValue(self: NumberLabel, val: number)
    local str = tostring(val):split("")
    while #str < #self.Digits do
       table.insert(str, 1, "0")
@@ -54,7 +54,7 @@ function NumberLabel:SetValue(val: number)
    end
 end
 
-function NumberLabel:Destroy()
+function NumberLabel.Destroy(self: NumberLabel)
     self.Frame:Destroy()
 end
 
